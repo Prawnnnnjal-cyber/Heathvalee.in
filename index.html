@@ -1,0 +1,1367 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="Heathvale.in - Digital Heatwave Risk Mapping for Indian Cities"
+    >
+
+    <title>Heathvale.in | Digital Heatwave Risk Mapping</title>
+
+
+    <!-- Google Font -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- Leaflet CSS -->
+
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    >
+
+
+    <!-- Our CSS -->
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         NAVBAR
+         ===================================================== -->
+
+    <header class="navbar">
+
+        <div class="nav-container">
+
+
+            <a
+                href="#home"
+                class="brand"
+            >
+
+                <span class="brand-icon">
+                    🌡️
+                </span>
+
+                <span>
+                    Heathvale<span class="brand-dot">.in</span>
+                </span>
+
+            </a>
+
+
+            <nav class="nav-links">
+
+                <a href="#home">
+                    Home
+                </a>
+
+                <a href="#dashboard">
+                    Dashboard
+                </a>
+
+                <a href="#heat-map-section">
+                    Heat Map
+                </a>
+
+                <a href="#live-aqi">
+                    Live AQI
+                </a>
+
+                <a href="#solutions">
+                    Solutions
+                </a>
+
+                <a href="#research">
+                    Research
+                </a>
+
+            </nav>
+
+
+            <a
+                href="#dashboard"
+                class="nav-button"
+            >
+                Explore Dashboard ↓
+            </a>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         HERO
+         ===================================================== -->
+
+    <main id="home">
+
+
+        <section class="hero">
+
+
+            <div class="hero-content">
+
+
+                <span class="hero-label">
+                    DIGITAL HEATWAVE RISK MAPPING
+                </span>
+
+
+                <h1>
+                    Mapping Heat.
+                    <span>Protecting Cities.</span>
+                </h1>
+
+
+                <p>
+                    A live environmental monitoring platform
+                    designed to visualize heat risk and air-quality
+                    conditions across major Indian cities.
+                </p>
+
+
+                <div class="hero-buttons">
+
+
+                    <a
+                        href="#heat-map-section"
+                        class="primary-button"
+                    >
+                        🗺️ Explore Heat Map
+                    </a>
+
+
+                    <a
+                        href="#live-aqi"
+                        class="secondary-button"
+                    >
+                        📊 Live Monitoring
+                    </a>
+
+
+                </div>
+
+
+                <div class="team-mini">
+
+                    <span>
+                        PROJECT TEAM
+                    </span>
+
+                    <strong>
+                        Pranjal Kumar · Shriyas Deshmukh · Sai Tarun
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="hero-visual">
+
+
+                <div class="hero-circle">
+
+
+                    <div class="hero-circle-inner">
+
+                        <span class="hero-emoji">
+                            🌡️
+                        </span>
+
+                        <strong>
+                            INDIA
+                        </strong>
+
+                        <small>
+                            HEAT MONITOR
+                        </small>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =====================================================
+             DASHBOARD
+             ===================================================== -->
+
+        <section
+            class="dashboard-section"
+            id="dashboard"
+        >
+
+
+            <div class="section-top">
+
+
+                <div>
+
+                    <span class="section-label">
+                        LIVE ENVIRONMENTAL DASHBOARD
+                    </span>
+
+
+                    <h2>
+                        India Heat & Air Snapshot
+                    </h2>
+
+
+                    <p>
+                        Real-time environmental information
+                        for monitored Indian cities.
+                    </p>
+
+                </div>
+
+
+                <button
+                    id="dashboardRefreshBtn"
+                    class="refresh-button"
+                    type="button"
+                >
+                    🔄 Refresh Live Data
+                </button>
+
+
+            </div>
+
+
+
+            <!-- STAT CARDS -->
+
+            <div class="stats-grid">
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        🌡️
+                    </div>
+
+                    <div
+                        id="avgTemp"
+                        class="stat-value"
+                    >
+                        --
+                    </div>
+
+                    <div class="stat-title">
+                        Average monitored temperature
+                    </div>
+
+                </div>
+
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        💨
+                    </div>
+
+                    <div
+                        id="avgAQI"
+                        class="stat-value"
+                    >
+                        --
+                    </div>
+
+                    <div class="stat-title">
+                        Average estimated AQI
+                    </div>
+
+                </div>
+
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        🏙️
+                    </div>
+
+                    <div class="stat-value">
+                        15
+                    </div>
+
+                    <div class="stat-title">
+                        Indian cities monitored
+                    </div>
+
+                </div>
+
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        🛰️
+                    </div>
+
+                    <div class="stat-value">
+                        GIS + API
+                    </div>
+
+                    <div class="stat-title">
+                        Interactive environmental mapping
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- DATA NOTICE -->
+
+            <div class="data-notice">
+
+                <strong>
+                    ⚠️ Data information:
+                </strong>
+
+                Temperature and PM2.5 values are obtained
+                from Open-Meteo APIs. The AQI shown by this
+                project is an educational PM2.5-based estimate
+                and is not official CPCB AQI.
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =====================================================
+             INDIA HEAT MAP
+             ===================================================== -->
+
+        <section
+            class="map-section"
+            id="heat-map-section"
+        >
+
+
+            <div class="map-header">
+
+
+                <div>
+
+                    <span class="section-label">
+                        LIVE GIS MONITORING
+                    </span>
+
+
+                    <h2>
+                        India Heat Risk Map
+                    </h2>
+
+                </div>
+
+
+                <div class="map-status">
+
+                    <span class="status-dot"></span>
+
+                    LIVE MONITORING
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- MAP -->
+
+            <div class="map-card">
+
+
+                <div id="heatMap"></div>
+
+
+                <!-- MAP LOADING -->
+
+                <div
+                    id="mapLoading"
+                    class="map-loading"
+                >
+
+                    <div class="loading-spinner"></div>
+
+                    <span>
+                        Loading India heat map...
+                    </span>
+
+                </div>
+
+
+                <!-- MAP LEGEND -->
+
+                <div class="map-overlay-legend">
+
+
+                    <div>
+
+                        <span class="legend-dot lower"></span>
+
+                        Lower
+
+                    </div>
+
+
+                    <div>
+
+                        <span class="legend-dot moderate"></span>
+
+                        Moderate
+
+                    </div>
+
+
+                    <div>
+
+                        <span class="legend-dot high"></span>
+
+                        High
+
+                    </div>
+
+
+                    <div>
+
+                        <span class="legend-dot extreme"></span>
+
+                        Extreme
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- MAP INFORMATION -->
+
+            <div class="map-bottom">
+
+
+                <span>
+                    📍 15 Indian cities
+                </span>
+
+
+                <span>
+                    🌡️ Temperature
+                </span>
+
+
+                <span>
+                    💨 PM2.5
+                </span>
+
+
+                <span>
+                    🔥 Heat Risk
+                </span>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =====================================================
+             LIVE AQI TRACKER
+             ===================================================== -->
+
+        <section
+            class="live-section"
+            id="live-aqi"
+        >
+
+
+            <div class="section-top">
+
+
+                <div>
+
+                    <span class="section-label">
+                        LIVE ENVIRONMENTAL TRACKER
+                    </span>
+
+
+                    <h2>
+                        Live City Monitoring
+                    </h2>
+
+
+                    <p>
+                        Select any monitored city to view
+                        current environmental conditions.
+                    </p>
+
+                </div>
+
+
+
+                <div class="city-selector">
+
+                    <label for="citySelect">
+                        SELECT CITY
+                    </label>
+
+
+                    <select id="citySelect">
+
+                        <option value="">
+                            Loading cities...
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- LIVE DATA GRID -->
+
+            <div class="live-grid">
+
+
+                <!-- Temperature -->
+
+                <div class="live-card">
+
+                    <div class="live-icon">
+                        🌡️
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Current Temperature
+                        </span>
+
+
+                        <strong id="temperature">
+                            --
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- AQI -->
+
+                <div class="live-card">
+
+                    <div class="live-icon">
+                        💨
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Estimated AQI
+                        </span>
+
+
+                        <strong id="aqi">
+                            --
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Heat Risk -->
+
+                <div class="live-card">
+
+                    <div class="live-icon">
+                        🔥
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Heat Risk
+                        </span>
+
+
+                        <strong id="heatRisk">
+                            --
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Humidity -->
+
+                <div class="live-card">
+
+                    <div class="live-icon">
+                        💧
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Humidity
+                        </span>
+
+
+                        <strong id="humidity">
+                            --
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- PM2.5 -->
+
+                <div class="live-card">
+
+                    <div class="live-icon">
+                        🫁
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            PM2.5
+                        </span>
+
+
+                        <strong id="pm25">
+                            --
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Feels Like -->
+
+                <div class="live-card">
+
+                    <div class="live-icon">
+                        🌡️
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Feels Like
+                        </span>
+
+
+                        <strong id="feelsLike">
+                            --
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- CITY INFORMATION -->
+
+            <div
+                id="cityInformation"
+                class="city-information"
+            >
+
+
+                <div>
+
+                    <span>
+                        Currently Monitoring
+                    </span>
+
+
+                    <strong id="selectedCityName">
+                        --
+                    </strong>
+
+                </div>
+
+
+
+                <div>
+
+                    <span>
+                        Heat Risk Information
+                    </span>
+
+
+                    <strong id="riskDescription">
+                        Waiting for live data...
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- TRACKER FOOTER -->
+
+            <div class="tracker-footer">
+
+
+                <span id="lastUpdated">
+                    Waiting for live data...
+                </span>
+
+
+                <button
+                    id="refreshBtn"
+                    class="refresh-button"
+                    type="button"
+                >
+                    🔄 Refresh Live Data
+                </button>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =====================================================
+             HEATWAVE INFORMATION
+             ===================================================== -->
+
+        <section
+            class="info-section"
+            id="solutions"
+        >
+
+
+            <div class="section-top">
+
+
+                <div>
+
+                    <span class="section-label">
+                        UNDERSTANDING EXTREME HEAT
+                    </span>
+
+
+                    <h2>
+                        What is a Heatwave?
+                    </h2>
+
+
+                    <p>
+                        Understanding heat risk helps communities
+                        prepare for extreme temperature conditions.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="info-grid">
+
+
+                <article class="info-card">
+
+                    <span class="info-number">
+                        01
+                    </span>
+
+
+                    <h3>
+                        Extreme Temperature
+                    </h3>
+
+
+                    <p>
+                        Heatwaves involve unusually high
+                        temperatures that can affect people,
+                        infrastructure and ecosystems.
+                    </p>
+
+                </article>
+
+
+
+                <article class="info-card">
+
+                    <span class="info-number">
+                        02
+                    </span>
+
+
+                    <h3>
+                        Urban Heat
+                    </h3>
+
+
+                    <p>
+                        Dense buildings, roads and limited
+                        vegetation can make cities retain
+                        more heat.
+                    </p>
+
+                </article>
+
+
+
+                <article class="info-card">
+
+                    <span class="info-number">
+                        03
+                    </span>
+
+
+                    <h3>
+                        Health Risk
+                    </h3>
+
+
+                    <p>
+                        Prolonged exposure to extreme heat
+                        can increase heat-related risks,
+                        especially for vulnerable populations.
+                    </p>
+
+                </article>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =====================================================
+             SOLUTIONS
+             ===================================================== -->
+
+        <section class="solutions-section">
+
+
+            <div class="section-top">
+
+
+                <div>
+
+                    <span class="section-label">
+                        PRACTICAL ACTIONS
+                    </span>
+
+
+                    <h2>
+                        How to Stay Safe During Extreme Heat
+                    </h2>
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="solution-grid">
+
+
+                <div class="solution-card">
+
+                    <span>
+                        💧
+                    </span>
+
+                    <h3>
+                        Stay Hydrated
+                    </h3>
+
+                    <p>
+                        Drink water regularly and avoid
+                        dehydration during hot weather.
+                    </p>
+
+                </div>
+
+
+
+                <div class="solution-card">
+
+                    <span>
+                        🏠
+                    </span>
+
+                    <h3>
+                        Stay Cool
+                    </h3>
+
+                    <p>
+                        Use shaded or cool spaces and reduce
+                        unnecessary exposure to direct sunlight.
+                    </p>
+
+                </div>
+
+
+
+                <div class="solution-card">
+
+                    <span>
+                        🧢
+                    </span>
+
+                    <h3>
+                        Protect Yourself
+                    </h3>
+
+                    <p>
+                        Wear lightweight clothing and use
+                        appropriate protection when outdoors.
+                    </p>
+
+                </div>
+
+
+
+                <div class="solution-card">
+
+                    <span>
+                        📱
+                    </span>
+
+                    <h3>
+                        Monitor Conditions
+                    </h3>
+
+                    <p>
+                        Follow reliable weather and air-quality
+                        information before planning outdoor activities.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =====================================================
+             RESEARCH
+             ===================================================== -->
+
+        <section
+            class="research-section"
+            id="research"
+        >
+
+
+            <div class="section-top">
+
+
+                <div>
+
+                    <span class="section-label">
+                        RESEARCH & KNOWLEDGE
+                    </span>
+
+
+                    <h2>
+                        Research Behind Heat & Urban Climate
+                    </h2>
+
+
+                    <p>
+                        Selected research and institutional resources
+                        for further exploration.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="research-grid">
+
+
+                <a
+                    href="https://cs3.mit.edu/publication/118854"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="research-card"
+                >
+
+                    <span>
+                        MIT
+                    </span>
+
+
+                    <h3>
+                        Climate & Urban Research
+                    </h3>
+
+
+                    <p>
+                        Research resources related to climate,
+                        cities and environmental systems.
+                    </p>
+
+
+                    <strong>
+                        Read Research →
+                    </strong>
+
+                </a>
+
+
+
+                <a
+                    href="https://news.stanford.edu/stories/2026/08/cities-extreme-heat-solutions-research"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="research-card"
+                >
+
+                    <span>
+                        STANFORD
+                    </span>
+
+
+                    <h3>
+                        Extreme Heat Solutions
+                    </h3>
+
+
+                    <p>
+                        Research and discussion around
+                        responses to extreme heat.
+                    </p>
+
+
+                    <strong>
+                        Read Research →
+                    </strong>
+
+                </a>
+
+
+
+                <a
+                    href="https://library.iitd.ac.in/research/publications/W2027212350/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="research-card"
+                >
+
+                    <span>
+                        IIT DELHI
+                    </span>
+
+
+                    <h3>
+                        Environmental Research
+                    </h3>
+
+
+                    <p>
+                        Academic research resources related
+                        to environmental and urban systems.
+                    </p>
+
+
+                    <strong>
+                        Explore →
+                    </strong>
+
+                </a>
+
+
+
+                <a
+                    href="https://www.frontiersin.org/journals/sustainable-cities/articles/10.3389/frsc.2023.1084573/full"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="research-card"
+                >
+
+                    <span>
+                        FRONTIERS
+                    </span>
+
+
+                    <h3>
+                        Sustainable Cities
+                    </h3>
+
+
+                    <p>
+                        Research on urban sustainability,
+                        climate and city-level challenges.
+                    </p>
+
+
+                    <strong>
+                        Read Paper →
+                    </strong>
+
+                </a>
+
+
+
+                <a
+                    href="https://www.nature.com/articles/s41598-026-38289-x"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="research-card"
+                >
+
+                    <span>
+                        SCIENTIFIC REPORTS
+                    </span>
+
+
+                    <h3>
+                        Heat & Environmental Research
+                    </h3>
+
+
+                    <p>
+                        Scientific research exploring environmental
+                        risks and changing climate conditions.
+                    </p>
+
+
+                    <strong>
+                        Read Paper →
+                    </strong>
+
+                </a>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =====================================================
+             TEAM
+             ===================================================== -->
+
+        <section class="team-section">
+
+
+            <span class="section-label">
+                PROJECT TEAM
+            </span>
+
+
+            <h2>
+                Built by Students for a Safer Future
+            </h2>
+
+
+
+            <div class="team-grid">
+
+
+                <div class="team-member">
+
+                    <div class="team-avatar">
+                        PK
+                    </div>
+
+                    <h3>
+                        Pranjal Kumar
+                    </h3>
+
+                    <p>
+                        CSE Student
+                    </p>
+
+                </div>
+
+
+
+                <div class="team-member">
+
+                    <div class="team-avatar">
+                        SD
+                    </div>
+
+                    <h3>
+                        Shriyas Deshmukh
+                    </h3>
+
+                    <p>
+                        Project Team
+                    </p>
+
+                </div>
+
+
+
+                <div class="team-member">
+
+                    <div class="team-avatar">
+                        ST
+                    </div>
+
+                    <h3>
+                        Sai Tarun
+                    </h3>
+
+                    <p>
+                        Project Team
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         FOOTER
+         ===================================================== -->
+
+    <footer class="footer">
+
+
+        <div class="footer-brand">
+            🌡️ Heathvale.in
+        </div>
+
+
+        <p>
+            Digital Heatwave Risk Mapping for Indian Cities
+        </p>
+
+
+        <small>
+            Educational environmental monitoring project
+        </small>
+
+
+    </footer>
+
+
+
+    <!-- =====================================================
+         LEAFLET JS
+         ===================================================== -->
+
+    <script
+        src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    ></script>
+
+
+    <!-- =====================================================
+         OUR JAVASCRIPT
+         ===================================================== -->
+
+    <script
+        src="script.js"
+    ></script>
+
+
+</body>
+
+</html>
